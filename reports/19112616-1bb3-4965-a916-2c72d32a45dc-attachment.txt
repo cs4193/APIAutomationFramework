@@ -1,0 +1,6 @@
+<Response [200]>
+3368
+<Response [200]>
+4cfc31c621bfe88
+200
+{'firstname': 'Chetan', 'lastname': 'Brown', 'totalprice': 100, 'depositpaid': True, 'bookingdates': {'checkin': '2018-01-01', 'checkout': '2019-01-01'}, 'additionalneeds': 'Breakfast'}

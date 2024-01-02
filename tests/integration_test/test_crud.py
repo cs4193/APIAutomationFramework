@@ -8,36 +8,22 @@ from src.helpers.utils import common_headers_json, patch_headers_json
 
 
 class TestCRUDOperations(object):
-    def test_create_token(self):
-        response = post_request(url=url_create_token(), auth=None, headers=common_headers_json(),
-                                payload=payload_create_token(),in_json=False)
-        print(response)
-        token1 = response.json()["token"]
-        print(token1)
-        verify_http_status_code(response, 200)
 
-    def test_create_booking_tc1(self):
-        #URL, Headers, Payload
-        response = post_request(url=url_create_booking(),auth=None, headers=common_headers_json(),
-                                payload=payload_create_booking(), in_json=False)
-        print(response)
-        bookingid = response.json()["bookingid"]
-        print(bookingid)
-        verify_json_key_for_not_none(response.json()["bookingid"])
-        verify_http_status_code(response,200)
+    def test_update_booking(self,create_token,create_booking):
 
-    def test_update_booking(self):
+        token2 = create_token
+        booking_id = create_booking
 
-        token2 = "0823593f4a62400"
-        booking_id = 3127
-        auth = ("admin","password123")
-        response = patch_request(url=url_patch_put_delete_booking(3414),auth=None,headers=patch_headers_json(),
+        response = patch_request(url=url_patch_put_delete_booking(booking_id),auth=None,headers=patch_headers_json(token2),
                                 payload=payload_update_booking(), in_json=False)
         print(response.status_code)
         print(response.json())
 
-    def test_delete_booking(self):
-        response = delete_request(url = url_patch_put_delete_booking(3414),auth= None, headers=patch_headers_json(),
+    def test_delete_booking(self,create_token,create_booking):
+        token2 = create_token
+        booking_id = create_booking
+        response = delete_request(url = url_patch_put_delete_booking(booking_id),auth= None,
+                                  headers=patch_headers_json(token2),
                                   in_json=False)
         print(response)
 

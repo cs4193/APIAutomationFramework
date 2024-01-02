@@ -14,9 +14,10 @@ def common_headers_xml():
     return headers
 
 
-def patch_headers_json():
+def patch_headers_json(token2):
+    token1 = "token="+token2
     headers = {
         "Content-Type": "application/json",
-        "Cookie": "token=c351b71011b78f9"
+        "Cookie": token1
     }
     return headers
